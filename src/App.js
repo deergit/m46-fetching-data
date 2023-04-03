@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Modal from "react-modal";
+import { Textfit } from "react-textfit";
 import "./App.css";
 
 function App() {
@@ -7,9 +8,9 @@ function App() {
     const [errorMsg, setErrorMsg] = useState(null);
     const [modalIsOpen, setIsOpen] = useState(false);
 
-    const openModal = () => setIsOpen(true);
+    const handleShow = () => setIsOpen(true);
 
-    const closeModal = () => setIsOpen(false);
+    const handleClose = () => setIsOpen(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -38,27 +39,21 @@ function App() {
             <div id="container">
                 {allArt.map((piece, index) => {
                     return (
-                        <div key={index} className="content-wrapper" onClick={openModal}>
+                        <div key={index} className="content-wrapper" onClick={handleShow}>
                             <img src={`https://www.artic.edu/iiif/2/${piece.image_id}/full/843,/0/default.jpg`} alt={piece.thumbnail.alt_text} draggable="false"></img>
                             <div className="info">
                                 <h2>{piece.title}</h2>
-                                <h3>{piece.artist_title}, {piece.medium_display}</h3>
+                                <Textfit mode="multi" max={10} max={70}>{piece.artist_title}, {piece.medium_display}</Textfit>
                             </div>
                         </div>
                     );
                 })}
             </div>
 
-            <Modal show={modalIsOpen} onHide={closeModal}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Modal title</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-                <Modal.Footer>
-                    <button onClick={closeModal}>
+            <Modal isOpen={modalIsOpen} onRequestClose={handleClose} contentLabel="test modal">
+                <button onClick={handleClose}>
                         Close
-                    </button>
-                </Modal.Footer>
+                </button>
             </Modal>
         </div>
     );
