@@ -8,7 +8,7 @@ function App() {
         const fetchData = async () => {
             const response = await fetch("http://legacy--api.herokuapp.com/api/v1/characters");
             const data = await response.json();
-            console.log(data);
+            setAllCharacters(data);
         }
         fetchData();
     }, [])
@@ -16,6 +16,9 @@ function App() {
     return (
         <div className="App">
             <h1>Fetching Data</h1>
+            {allCharacters.map((character, index) => {
+                return <p key={index}>{character.name}</p>
+            })}
         </div>
     );
 }
