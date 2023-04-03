@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Modal from "react-modal";
 import { Textfit } from "react-textfit";
 import "./App.css";
 
@@ -22,6 +21,7 @@ function App() {
                 }
                 const data = await response.json();
                 setAllArt(data.data);
+                console.log(data.data);
             } catch(err) {
                 setErrorMsg("ERROR: unable to retrieve data from artic API");
                 console.log(err.message);
@@ -40,21 +40,17 @@ function App() {
                 {allArt.map((piece, index) => {
                     return (
                         <div key={index} className="content-wrapper" onClick={handleShow}>
-                            <img src={`https://www.artic.edu/iiif/2/${piece.image_id}/full/843,/0/default.jpg`} alt={piece.thumbnail.alt_text} draggable="false"></img>
+                            <img src={`https://www.artic.edu/iiif/2/${piece.image_id}/full/843,/0/default.jpg`} alt={`${piece.title} by ${piece.artist_title} in ${piece.medium_display}`} draggable="false"></img>
                             <div className="info">
                                 <h2>{piece.title}</h2>
-                                <Textfit mode="multi" max={10} max={70}>{piece.artist_title}, {piece.medium_display}</Textfit>
+                                <Textfit mode="multi" min={10} max={70}>{piece.artist_title}, {piece.medium_display}</Textfit>
                             </div>
                         </div>
                     );
                 })}
             </div>
 
-            <Modal isOpen={modalIsOpen} onRequestClose={handleClose} contentLabel="test modal">
-                <button onClick={handleClose}>
-                        Close
-                </button>
-            </Modal>
+            {/* modal here */}
         </div>
     );
 }
