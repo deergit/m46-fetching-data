@@ -16,7 +16,7 @@ function App() {
                 const data = await response.json();
                 setAllArt(data.data);
             } catch(err) {
-                setErrorMsg("Data not found");
+                setErrorMsg("ERROR: unable to retrieve data from artic API");
                 console.log(err.message);
             }
         }
@@ -25,15 +25,14 @@ function App() {
 
     return (
         <div className="App">
-            <h1>Fetching Data</h1>
+            <h1>Art Institute of Chicago</h1>
+            <h4>and their lovely api</h4>
             {errorMsg && <h3>{errorMsg}</h3>}
             <div id="container">
                 {allArt.map((piece, index) => {
                     return (
                         <div key={index} className="content-wrapper">
-                            <div className="image">
-                                <img src={`https://www.artic.edu/iiif/2/${piece.image_id}/full/843,/0/default.jpg`} alt={piece.thumbnail.alt_text} draggable="false"></img>
-                            </div>
+                            <img src={`https://www.artic.edu/iiif/2/${piece.image_id}/full/843,/0/default.jpg`} alt={piece.thumbnail.alt_text} draggable="false"></img>
                             <div className="info">
                                 <h2>{piece.title}</h2>
                                 <h3>{piece.artist_title}, {piece.medium_display}</h3>
