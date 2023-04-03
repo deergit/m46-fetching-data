@@ -7,7 +7,8 @@ function App() {
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch("http://legacy--api.herokuapp.com/api/v1/characters");
-            console.log(response);
+            const data = await response.json();
+            console.log(data);
         }
         fetchData();
     }, [])
