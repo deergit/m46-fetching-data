@@ -50,7 +50,15 @@ function App() {
             </div>
 
             <Modal show={modalIsOpen} onHide={closeModal}>
-
+                <Modal.Header closeButton>
+                    <Modal.Title>Modal title</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                <Modal.Footer>
+                    <button onClick={closeModal}>
+                        Close
+                    </button>
+                </Modal.Footer>
             </Modal>
         </div>
     );
