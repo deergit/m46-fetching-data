@@ -4,7 +4,7 @@
 
 .Page {
     width: 100%;
-    height: 95vh;
+    height: calc(100vh - 60px);
     position: fixed;
     top: 5vh;
     overflow: scroll;
@@ -14,7 +14,7 @@ nav {
     position: fixed;
     z-index: 10;
     width: 100%;
-    height: 5vh;
+    height: 60px;
     background-color: gray;
     display: flex;
     flex-flow: row nowrap;
