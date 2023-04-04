@@ -1,10 +1,7 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import { Textfit } from "react-textfit";
-import { Wrapper, Container, ArtPiece } from "./App.styles";
 import Home from "./pages/Home";
 import Gallery from "./pages/Gallery";
-import Modal from "./components/Modal";
 import "./App.css";
 
 const App = () => {
@@ -35,7 +32,6 @@ const App = () => {
                 }
                 const data = await response.json();
                 setAllArt(data.data);
-                console.log(data.data);
             } catch(err) {
                 setErrorMsg("ERROR: unable to retrieve data from artic API");
                 console.log(err.message);
@@ -48,6 +44,7 @@ const App = () => {
     return (
         <BrowserRouter>
             <nav>
+                <h1>Art Institute of Chicago API</h1>
                 <Link to="/">Home</Link>
                 <Link to="/gallery">Gallery</Link>
             </nav>

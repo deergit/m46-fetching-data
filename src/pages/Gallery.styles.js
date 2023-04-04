@@ -46,15 +46,17 @@ export const ArtPiece = styled.div`
 `
 
 export const ModalContainer = styled.div`
-    z-index: 2;
+    z-index: 5;
 
-    width: 80vw;
-    height: 80vh;
+    text-align: center;
+
+    width: 80%;
+    height: 80%;
 
     position: fixed;
 
-    top: 10vw;
-    left: 10vw;
+    top: 10%;
+    left: 10%;
     margin-top: auto;
 
     border-radius: 10px;
@@ -82,7 +84,8 @@ export const ModalContainer = styled.div`
     img {
         margin: 10px;
 
-        border: 4px solid white;
+        border: 6px solid white;
+        box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.2);
 
         height: 70%;
         max-width: 90%;

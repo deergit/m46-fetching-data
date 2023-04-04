@@ -1,3 +1,39 @@
 .App {
     text-align: center;
 }
+
+.Page {
+    width: 100%;
+    height: 95vh;
+    position: fixed;
+    top: 5vh;
+    overflow: scroll;
+}
+
+nav {
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+    height: 5vh;
+    background-color: gray;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+nav h1 {
+    padding: 0px 60px;
+}
+
+nav a {
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: 0px 20px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
+}
+nav a:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
