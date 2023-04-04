@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { ModalContainer } from "./App.styles";
+import { ModalContainer } from "../App.styles";
 
 const Modal = (props) => {
     const modalRef = useRef();

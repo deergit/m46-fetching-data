@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { Textfit } from "react-textfit";
 import { Wrapper, Container, ArtPiece } from "./App.styles";
-import Modal from "./Modal";
+import Home from "./pages/Home";
+import Gallery from "./pages/Gallery";
+import Modal from "./components/Modal";
 import "./App.css";
 
-function App() {
+const App = () => {
     const [allArt, setAllArt] = useState([]);
     const [errorMsg, setErrorMsg] = useState(null);
     const [currentPiece, setCurrentPiece] = useState({});
@@ -43,28 +46,17 @@ function App() {
 
 
     return (
-        <div className="App">
-            {modalIsOpen ? <Modal closeModal={handleClose} piece={currentPiece} hidden /> : null}
-            <Wrapper onClick={modalIsOpen ? handleClose : null} blur={bgBlur}>
-                <h1>Art Institute of Chicago</h1>
-                <h4>and their lovely api</h4>
-                {errorMsg && <h3>{errorMsg}</h3>}
+        <BrowserRouter>
+            <nav>
+                <Link to="/">Home</Link>
+                <Link to="/gallery">Gallery</Link>
+            </nav>
 
-                <Container>
-                    {allArt.map((piece, index) => {
-                        return (
-                            <ArtPiece key={index} className="content-wrapper" onClick={() => handleShow(piece)}>
-                                <img src={`https://www.artic.edu/iiif/2/${piece.image_id}/full/843,/0/default.jpg`} alt={`${piece.title} by ${piece.artist_title} in ${piece.medium_display}`} draggable="false"></img>
-                                <div className="info">
-                                    <h2>{piece.title}</h2>
-                                    <Textfit mode="multi" min={10} max={70}>{piece.artist_title}, {piece.medium_display}</Textfit>
-                                </div>
-                            </ArtPiece>
-                        );
-                    })}
-                </Container>
-            </Wrapper>
-        </div>
+            <Routes>
+                <Route path="/" element={ <Home /> } />
+                <Route path="/gallery" element={ <Gallery allArt={allArt} modalIsOpen={modalIsOpen} handleShow={handleShow} handleClose={handleClose} currentPiece={currentPiece} bgBlur={bgBlur} errorMsg={errorMsg} /> } />
+            </Routes>
+        </BrowserRouter>
     );
 }
 
