@@ -24,7 +24,7 @@ const Gallery = (props) => {
                 </Container>
             </Wrapper>
         </div>
-    )
+    );
 }
 
 export default Gallery

@@ -18,7 +18,7 @@ const Modal = (props) => {
             <h2>{props.piece.artist_display}</h2>
             <h3>{props.piece.medium_display}</h3>
         </ModalContainer>
-    )
+    );
 }
 
 export default Modal;

@@ -14,7 +14,7 @@ const Home = () => {
                 <h3>GREAT bricks</h3>
             </Wrapper>
         </div>
-    )
+    );
 }
 
 export default Home;
