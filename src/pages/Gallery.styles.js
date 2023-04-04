@@ -40,7 +40,7 @@ export const ArtPiece = styled.div`
         margin: 20px;
 
         position: absolute;
-        top: 33%;
+        top: 45%;
         left: 40%;
     }
 `
