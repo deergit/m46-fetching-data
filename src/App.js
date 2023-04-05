@@ -23,21 +23,28 @@ const App = () => {
     }
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch("https://api.artic.edu/api/v1/artworks");
+        const dataCache = JSON.parse(localStorage.getItem("dataCache"));
 
-                if (!response.ok) {
-                    throw new Error(response.statusText);
+        if (dataCache && dataCache.length > 0) {
+            setAllArt(dataCache);
+        } else {
+            const fetchData = async () => {
+                try {
+                    const response = await fetch("https://api.artic.edu/api/v1/artworks");
+
+                    if (!response.ok) {
+                        throw new Error(response.statusText);
+                    }
+                    const data = await response.json();
+                    setAllArt(data.data);
+                    localStorage.setItem("dataCache", JSON.stringify(data.data));
+                } catch(err) {
+                    setErrorMsg("ERROR: unable to retrieve data from artic API");
+                    console.log(err.message);
                 }
-                const data = await response.json();
-                setAllArt(data.data);
-            } catch(err) {
-                setErrorMsg("ERROR: unable to retrieve data from artic API");
-                console.log(err.message);
             }
+            fetchData();
         }
-        fetchData();
     }, []);
 
 
